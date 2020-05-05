@@ -47,7 +47,7 @@ namespace GoogleLogins_04_30
         public void testSearchForItem(string key)
         {
             SearchForItem(key);
-            string actual = driver.FindElement(By.ClassName("product-name")).Text;
+            string actual = driver.FindElement(By.XPath("//*[@id='center_column']/ul/li/div/div[2]/h5/a")).Text;
             string expected = "Blouse";
             Assert.AreEqual(expected, actual);
         }
@@ -67,16 +67,16 @@ namespace GoogleLogins_04_30
         public void testOrder()
         {
             Order();
-            string actual = driver.FindElement(By.ClassName("dark")).Text;
+            string actual = driver.FindElement(By.XPath("//*[@id='center_column']/div/p/strong")).Text;
             string expected = "Your order on My Store is complete.";
             Assert.AreEqual(expected, actual);
         }
         [Test]
         public void Test()
         {
-            LogIn("tuta@tuta.com", "tuta123");
-            SearchForItem("blouse");
-            Order();
+            testLogIn("tuta@tuta.com", "tuta123");
+            testSearchForItem("blouse");
+            testOrder();
         }
         [TearDown]
         public void Close()
